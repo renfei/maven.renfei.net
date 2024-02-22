@@ -28,6 +28,15 @@
             }
         }
     </script>
+    <script>
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?94410e4a517ba7ca4ca9a98703a31331";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
 </head>
 <body>
 <main>
@@ -113,7 +122,7 @@
             </div>
         </div>
         <div class="row g-5">
-            <div>
+            <div class="col-12">
                 <h2 class="text-body-emphasis mb-3">代理仓库信息</h2>
                 <table class="table table-bordered table-striped mb-3">
                     <thead>
@@ -171,10 +180,15 @@
                     </tr>
                     </tbody>
                 </table>
+            </div>
+            <div class="col-md-6">
                 <h3 class="text-body-emphasis mb-3">仓库补充</h3>
                 <p>
                     如果您使用我们的公开代理仓库，还是未能找到您所需要的依赖包，您可以联系我们添加代理地址，或直接添加官方的
                     Jar 包。我们很乐意能能够解决您的问题。
+                </p>
+                <p>
+                    如果是贵司或贵组织内部的私有包，就不要找我添加了，我只添加公开的包，内部私有包请找内部组织的仓库管理员解决。
                 </p>
                 <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
                     <symbol id="arrow-right-circle" viewBox="0 0 16 16">
@@ -204,6 +218,17 @@
                         </a>
                     </li>
                 </ul>
+            </div>
+            <div class="col-md-6">
+                <h3 class="text-body-emphasis mb-3">发起故事</h3>
+                <p>
+                    随着接手的项目越来越多，各个项目依赖包奇奇怪怪，什么达梦驱动包找不到了、com.oracle:ojdbc6 找不到了，
+                    有的依赖不在中央仓库而在厂商自己的仓库中，有的是单独下载而不在中央仓库中发行，搞个项目本地有了服务器上编译又不过了，
+                    因为依赖包浪费老夫的时间，所以我决定自己聚合一个 Maven 仓库，包罗万象。
+                </p>
+                <p>
+                    这个仓库诞生了，代理各个公开仓库，解决各种依赖包找不到的问题。
+                </p>
             </div>
         </div>
         <footer class="pt-3 mt-4 text-body-secondary border-top">
