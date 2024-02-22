@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="zh-Hans-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Language" content="zh-CN"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="renderer" content="webkit"/>
+    <meta name="force-rendering" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1"/>
+    <title>Maven 公共代理仓库 ｜ Maven Public Proxy Repository</title>
+    <meta name="description"
+          content="Maven 公共代理仓库，代理多种常见 Maven 仓库，帮助开发者有效解决冷门依赖包无法找到的问题，加速程序编译构建。"/>
+    <meta name="keywords" content="maven, mvn, repository, proxy, 公共, 代理, 仓库"/>
+    <link rel="icon" href="https://renfei.oncdn.cn/favicon.ico"/>
+    <link href="https://npm.oncdn.cn/bootstrap/5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://npm.oncdn.cn/highlight.js/11.9.0/styles/a11y-dark.min.css" rel="stylesheet">
+    <script src="https://npm.oncdn.cn/bootstrap/5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://npm.oncdn.cn/highlight.js/11.9.0/highlight.min.js"></script>
+    <script>
+        const copyContent = async () => {
+            try {
+                await navigator.clipboard.writeText("https://maven.renfei.net/nexus/repository/public/");
+                document.getElementById('basic-addon2').innerText = "复制成功";
+            } catch (err) {
+                alert("复制失败，请手动复制。");
+            }
+        }
+    </script>
+</head>
+<body>
+<main>
+    <div class="container py-4">
+        <header class="pb-3 mb-4 border-bottom">
+            <a href="/" class="d-flex align-items-center text-body-emphasis text-decoration-none">
+                <span class="fs-4">Maven Public Proxy Repository</span>
+            </a>
+        </header>
+        <div class="p-5 mb-4 bg-body-tertiary rounded-3">
+            <div class="container-fluid py-5">
+                <h1 class="display-5 fw-bold">Maven 公共代理仓库</h1>
+                <p class="col-md-8 fs-4">
+                    Maven 公共代理仓库，代理多种常见 Maven 仓库，帮助开发者有效解决部分冷门依赖包无法找到的问题，加速程序编译构建。
+                </p>
+                <div class="col-md-8">
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control"
+                               value="https://maven.renfei.net/nexus/repository/public/" readonly>
+                        <span class="btn btn-primary btn-lg" id="basic-addon2" onclick="copyContent()">复制地址</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row g-5">
+            <div class="col-md-6">
+                <h2 class="text-body-emphasis">Maven 配置指南</h2>
+                <p>打开 maven 的配置文件（一般在 maven 安装目录的 conf/settings.xml），在 &lt;mirrors&gt;&lt;/mirrors&gt;
+                    标签中添加 mirror 子节点:</p>
+                <pre>
+                    <code class="xml">&lt;mirror&gt;
+  &lt;id&gt;renfeimaven&lt;/id&gt;
+  &lt;mirrorOf&gt;*&lt;/mirrorOf&gt;
+  &lt;name&gt;RENFEI公共仓库&lt;/name&gt;
+  &lt;url&gt;https://maven.renfei.net/nexus/repository/public/&lt;/url&gt;
+&lt;/mirror&gt;</code>
+                </pre>
+                <p>如果想使用其它代理仓库，可在 &lt;repositories&gt;&lt;/repositories&gt; 节点中加入对应的仓库使用地址。以使用
+                    central 代理仓为例：</p>
+                <pre>
+                    <code class="xml">&lt;repository&gt;
+  &lt;id&gt;central&lt;/id&gt;
+  &lt;url&gt;https://maven.renfei.net/nexus/repository/central/&lt;/url&gt;
+  &lt;releases&gt;
+    &lt;enabled&gt;true&lt;/enabled&gt;
+  &lt;/releases&gt;
+  &lt;snapshots&gt;
+    &lt;enabled&gt;true&lt;/enabled&gt;
+  &lt;/snapshots&gt;
+&lt;/repository&gt;</code>
+                </pre>
+            </div>
+
+            <div class="col-md-6">
+                <h2 class="text-body-emphasis">Gradle 配置指南</h2>
+                <p>在 build.gradle 文件中加入以下代码:</p>
+                <pre>
+                    <code class="gradle">allprojects {
+  repositories {
+    maven {
+      url 'https://maven.renfei.net/nexus/repository/public/'
+    }
+    mavenLocal()
+    mavenCentral()
+  }
+}</code>
+                </pre>
+                <p>如果想使用其它代理仓，以使用 central 仓为例，代码如下:</p>
+                <pre>
+                    <code class="gradle">allprojects {
+  repositories {
+    maven {
+      url 'https://maven.renfei.net/nexus/repository/public/'
+    }
+    maven {
+      url 'https://maven.renfei.net/nexus/repository/central/'
+    }
+    mavenLocal()
+    mavenCentral()
+  }
+}</code>
+                </pre>
+            </div>
+        </div>
+        <div class="row g-5">
+            <div>
+                <h2 class="text-body-emphasis mb-3">代理仓库信息</h2>
+                <table class="table table-bordered table-striped mb-3">
+                    <thead>
+                    <tr>
+                        <th scope="col">仓库名称</th>
+                        <th scope="col">仓库地址</th>
+                        <th scope="col">代理源地址</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>Public</td>
+                        <td>https://maven.renfei.net/nexus/repository/public/</td>
+                        <td>所有代理仓库的聚合仓库</td>
+                    </tr>
+                    <tr>
+                        <td>Central</td>
+                        <td>https://maven.renfei.net/nexus/repository/central/</td>
+                        <td>https://repo1.maven.org/maven2/</td>
+                    </tr>
+                    <tr>
+                        <td>Gradle Plugin</td>
+                        <td>https://maven.renfei.net/nexus/repository/gradle-plugin/</td>
+                        <td>https://plugins.gradle.org/m2/</td>
+                    </tr>
+                    <tr>
+                        <td>Apache Snapshots</td>
+                        <td>https://maven.renfei.net/nexus/repository/apache-snapshots/</td>
+                        <td>https://repository.apache.org/snapshots/</td>
+                    </tr>
+                    <tr>
+                        <td>Atlassian</td>
+                        <td>https://maven.renfei.net/nexus/repository/atlassian/</td>
+                        <td>https://packages.atlassian.com/mvn/maven-atlassian-external/</td>
+                    </tr>
+                    <tr>
+                        <td>Hortonworks</td>
+                        <td>https://maven.renfei.net/nexus/repository/hortonworks/</td>
+                        <td>https://repo.hortonworks.com/content/repositories/releases/</td>
+                    </tr>
+                    <tr>
+                        <td>Spring Plugins</td>
+                        <td>https://maven.renfei.net/nexus/repository/spring-plugins/</td>
+                        <td>https://repo.spring.io/ui/native/plugins-release/</td>
+                    </tr>
+                    <tr>
+                        <td>Spring Libs Milestone</td>
+                        <td>https://maven.renfei.net/nexus/repository/spring-libs-milestone/</td>
+                        <td>https://repo.spring.io/ui/native/libs-milestone/</td>
+                    </tr>
+                    <tr>
+                        <td>JEECG</td>
+                        <td>https://maven.renfei.net/nexus/repository/jeecg/</td>
+                        <td>https://maven.jeecg.org/nexus/content/repositories/jeecg/</td>
+                    </tr>
+                    </tbody>
+                </table>
+                <h3 class="text-body-emphasis mb-3">仓库补充</h3>
+                <p>
+                    如果您使用我们的公开代理仓库，还是未能找到您所需要的依赖包，您可以联系我们添加代理地址，或直接添加官方的
+                    Jar 包。我们很乐意能能够解决您的问题。
+                </p>
+                <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
+                    <symbol id="arrow-right-circle" viewBox="0 0 16 16">
+                        <path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z"/>
+                    </symbol>
+                    <symbol id="bootstrap" viewBox="0 0 118 94">
+                        <title>Bootstrap</title>
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                              d="M24.509 0c-6.733 0-11.715 5.893-11.492 12.284.214 6.14-.064 14.092-2.066 20.577C8.943 39.365 5.547 43.485 0 44.014v5.972c5.547.529 8.943 4.649 10.951 11.153 2.002 6.485 2.28 14.437 2.066 20.577C12.794 88.106 17.776 94 24.51 94H93.5c6.733 0 11.714-5.893 11.491-12.284-.214-6.14.064-14.092 2.066-20.577 2.009-6.504 5.396-10.624 10.943-11.153v-5.972c-5.547-.529-8.934-4.649-10.943-11.153-2.002-6.484-2.28-14.437-2.066-20.577C105.214 5.894 100.233 0 93.5 0H24.508zM80 57.863C80 66.663 73.436 72 62.543 72H44a2 2 0 01-2-2V24a2 2 0 012-2h18.437c9.083 0 15.044 4.92 15.044 12.474 0 5.302-4.01 10.049-9.119 10.88v.277C75.317 46.394 80 51.21 80 57.863zM60.521 28.34H49.948v14.934h8.905c6.884 0 10.68-2.772 10.68-7.727 0-4.643-3.264-7.207-9.012-7.207zM49.948 49.2v16.458H60.91c7.167 0 10.964-2.876 10.964-8.281 0-5.406-3.903-8.178-11.425-8.178H49.948z"></path>
+                    </symbol>
+                </svg>
+                <ul class="list-unstyled ps-0">
+                    <li>
+                        <a class="icon-link mb-1" href="mailto:i@renfei.net" target="_blank">
+                            <svg class="bi" width="16" height="16">
+                                <use xlink:href="#arrow-right-circle"/>
+                            </svg>
+                            mail to: i@renfei.net
+                        </a>
+                    </li>
+                    <li>
+                        <a class="icon-link mb-1" href="https://github.com/renfei/maven.renfei.net" target="_blank">
+                            <svg class="bi" width="16" height="16">
+                                <use xlink:href="#arrow-right-circle"/>
+                            </svg>
+                            github.com/renfei/maven.renfei.net
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <footer class="pt-3 mt-4 text-body-secondary border-top">
+            Copyright &copy; 2024 <a href="https://www.renfei.net" target="_blank">RENFEI.NET</a> All rights reserved.
+            &middot; Powered by <a href="https://www.sonatype.com/products/sonatype-nexus-repository" target="_blank"
+                                   rel="nofollow">Sonatype Nexus Repository</a>
+        </footer>
+    </div>
+</main>
+<script>
+    if (typeof hljs !== 'undefined') {
+        hljs.highlightAll();
+    }
+</script>
+</body>
+</html>
