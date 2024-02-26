@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: /nexus/repository/
+Disallow: /nexus/service/
+Allow: /
