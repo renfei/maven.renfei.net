@@ -15,9 +15,22 @@
     <meta name="keywords" content="maven, mvn, repository, proxy, 公共, 代理, 仓库"/>
     <link rel="icon" href="https://renfei.oncdn.cn/favicon.ico"/>
     <link href="https://npm.oncdn.cn/bootstrap/5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://npm.oncdn.cn/highlight.js/11.9.0/styles/a11y-dark.min.css" rel="stylesheet">
+    <link href="https://npm.oncdn.cn/highlight.js/11.9.0/styles/atom-one-dark.min.css" rel="stylesheet">
+    <link href="https://npm.oncdn.cn/highlightjs-copy/1.0.5/dist/highlightjs-copy.min.css" rel="stylesheet">
     <script src="https://npm.oncdn.cn/bootstrap/5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://npm.oncdn.cn/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://npm.oncdn.cn/highlightjs-copy/1.0.5/dist/highlightjs-copy.min.js"></script>
+    <script src="https://npm.oncdn.cn/highlightjs-line-numbers.js/2.8.0/dist/highlightjs-line-numbers.min.js"></script>
+    <style>
+        .hljs {
+            line-height: 1.25;
+            border-radius: 0.375rem;
+        }
+
+        .hljs-ln-numbers {
+            padding-right: 10px !important;
+        }
+    </style>
     <script>
         const copyContent = async () => {
             try {
@@ -174,6 +187,56 @@
                         <td>https://repo.spring.io/ui/native/libs-milestone/</td>
                     </tr>
                     <tr>
+                        <td>JBossEA</td>
+                        <td>https://maven.renfei.net/nexus/repository/jbossea/</td>
+                        <td>https://repository.jboss.org/nexus/content/repositories/ea/</td>
+                    </tr>
+                    <tr>
+                        <td>KtorEAP</td>
+                        <td>https://maven.renfei.net/nexus/repository/ktoreap/</td>
+                        <td>https://maven.pkg.jetbrains.space/public/p/ktor/eap/</td>
+                    </tr>
+                    <tr>
+                        <td>WSO2 Public</td>
+                        <td>https://maven.renfei.net/nexus/repository/wso2/</td>
+                        <td>https://maven.wso2.org/nexus/content/repositories/public/</td>
+                    </tr>
+                    <tr>
+                        <td>BeDataDriven</td>
+                        <td>https://maven.renfei.net/nexus/repository/bedatadriven/</td>
+                        <td>https://nexus.bedatadriven.com/content/groups/public/</td>
+                    </tr>
+                    <tr>
+                        <td>Gigaspaces</td>
+                        <td>https://maven.renfei.net/nexus/repository/gigaspaces/</td>
+                        <td>https://maven-repository.openspaces.org/</td>
+                    </tr>
+                    <tr>
+                        <td>XWiki Releases</td>
+                        <td>https://maven.renfei.net/nexus/repository/xwiki/</td>
+                        <td>https://maven.xwiki.org/releases/</td>
+                    </tr>
+                    <tr>
+                        <td>JBoss Releases</td>
+                        <td>https://maven.renfei.net/nexus/repository/jboss/</td>
+                        <td>https://repository.jboss.org/nexus/content/repositories/releases/</td>
+                    </tr>
+                    <tr>
+                        <td>KotlinDev</td>
+                        <td>https://maven.renfei.net/nexus/repository/kotlin-dev/</td>
+                        <td>https://maven.pkg.jetbrains.space/kotlin/p/kotlin/dev/</td>
+                    </tr>
+                    <tr>
+                        <td>Spring Lib Release</td>
+                        <td>https://maven.renfei.net/nexus/repository/spring-libs-release/</td>
+                        <td>https://repo.spring.io/ui/native/libs-release/</td>
+                    </tr>
+                    <tr>
+                        <td>Alfresco</td>
+                        <td>https://maven.renfei.net/nexus/repository/alfresco/</td>
+                        <td>https://artifacts.alfresco.com/nexus/content/repositories/public/</td>
+                    </tr>
+                    <tr>
                         <td>JEECG</td>
                         <td>https://maven.renfei.net/nexus/repository/jeecg/</td>
                         <td>https://maven.jeecg.org/nexus/content/repositories/jeecg/</td>
@@ -241,6 +304,8 @@
 <script>
     if (typeof hljs !== 'undefined') {
         hljs.highlightAll();
+        hljs.initLineNumbersOnLoad();
+        hljs.addPlugin(new CopyButtonPlugin());
     }
 </script>
 </body>
